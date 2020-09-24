@@ -7,7 +7,7 @@ $rootDir = dirname(__DIR__);
 
 require_once sprintf('%s/vendor/autoload.php', $rootDir);
 
-$configFile = sprintf('%s/config/config.yaml', $rootDir);
+$configFile = sprintf('%s/config/config.json', $rootDir);
 
 if(!is_file($configFile)) {
     throw new \Exception('Config file missing');
