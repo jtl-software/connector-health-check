@@ -1,0 +1,26 @@
+{
+  "name": "jtl/connector-health-check",
+  "description": "Health check for connector applications",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Immanuel Klinkenberg",
+      "email": "immanuel.klinkenberg@jtl-software.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Jtl\\Connector\\HealthCheck\\": "src"
+    }
+  },
+  "require": {
+    "jtl/connector-client": "^0.14.1",
+    "hassankhan/config": "^2.1",
+    "symfony/yaml": "^5.1",
+    "jtl/health-check": "^0.1.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.16"
+  }
+}

@@ -1,0 +1,4 @@
+connector:
+    environment: "staging"
+    url: "https://my.connector.url"
+    token: "abcdefg"
