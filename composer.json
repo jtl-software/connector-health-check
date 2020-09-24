@@ -17,7 +17,6 @@
   "require": {
     "jtl/connector-client": "^0.14.1",
     "hassankhan/config": "^2.1",
-    "symfony/yaml": "^5.1",
     "jtl/health-check": "^0.1.0"
   },
   "require-dev": {
