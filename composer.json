@@ -15,8 +15,8 @@
     }
   },
   "require": {
-    "jtl/connector-client": "^0.14.1",
-    "hassankhan/config": "^2.1",
+    "jtl/connector-client": "^1.1",
+    "hassankhan/config": "^3.0",
     "jtl/health-check": "^0.1.0"
   },
   "require-dev": {

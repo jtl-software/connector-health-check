@@ -3,7 +3,7 @@
 
 namespace Jtl\Connector\HealthCheck;
 
-use Jtl\Connector\Client\Client;
+use Jtl\Connector\Client\ConnectorClient;
 use Jtl\HealthCheck\AbstractHealthCheck;
 use Jtl\HealthCheck\Result;
 use Jtl\HealthCheck\ResultDetail;
@@ -46,7 +46,7 @@ class ConnectorHealthCheck extends AbstractHealthCheck
      */
     public function check(): Result
     {
-        $client = new Client($this->connectorToken, $this->connectorUrl);
+        $client = new ConnectorClient($this->connectorToken, $this->connectorUrl);
 
         $details = [
             'env' => new ResultDetail('env', $this->environment),
