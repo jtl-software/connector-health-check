@@ -27,16 +27,27 @@ class ConnectorHealthCheck extends AbstractHealthCheck
     protected $connectorUrl;
 
     /**
+     * @var ConnectorClient|null
+     */
+    protected $client;
+
+    /**
      * ApplicationHealthCheck constructor.
      * @param string $environment
      * @param string $connectorToken
      * @param string $connectorUrl
+     * @param ConnectorClient|null $client
      */
-    public function __construct(string $environment, string $connectorToken, string $connectorUrl)
-    {
+    public function __construct(
+        string $environment,
+        string $connectorToken,
+        string $connectorUrl,
+        ?ConnectorClient $client = null
+    ) {
         $this->environment = $environment;
         $this->connectorToken = $connectorToken;
         $this->connectorUrl = $connectorUrl;
+        $this->client = $client;
         parent::__construct();
     }
 
@@ -46,12 +57,11 @@ class ConnectorHealthCheck extends AbstractHealthCheck
      */
     public function check(): Result
     {
-        $client = new ConnectorClient($this->connectorToken, $this->connectorUrl);
+        $client = $this->client ?? new ConnectorClient($this->connectorToken, $this->connectorUrl);
 
         $details = [
             'env' => new ResultDetail('env', $this->environment),
             'auth' => new ResultDetail('auth', true),
-            'finish' => new ResultDetail('finish', true)
         ];
 
         $messages = [];
@@ -63,14 +73,6 @@ class ConnectorHealthCheck extends AbstractHealthCheck
             $passed = false;
             $details['auth']->setValue(false);
             $messages[] = new ResultMessage('error', 'auth', $ex->getMessage());
-        }
-
-        try {
-            $client->finish();
-        } catch (\Throwable $ex) {
-            $passed = false;
-            $details['finish']->setValue(false);
-            $messages[] = new ResultMessage('error', 'finish', $ex->getMessage());
         }
 
         return new Result($passed, array_values($details), $messages);

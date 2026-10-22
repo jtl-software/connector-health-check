@@ -1,4 +1,4 @@
 .idea
 /vendor/
 composer.lock
-config.json
+config.json.phpunit.result.cache
